@@ -21,7 +21,11 @@
     "generate-coverage-all-packages": "nyc report --reporter=html --reporter=text --reporter=lcov --reporter=clover --report-dir=./coverage/all --temp-dir=./coverage/temp",
     "check-coverage": "npm run merge-coverage-report-jsons && npm run generate-coverage-all-packages",
     "test:cov": "npm run test && npm run test:e2e && npm run check-coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migration:generate": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate --dataSource ./src/config/typeorm.config.ts ./migrations/migration",
+    "migration:create": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create --dataSource ./src/config/typeorm.config.ts ./migrations/migration",
+    "migration:run": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run --dataSource ./src/config/typeorm.config.ts",
+    "migration:revert": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert --dataSource ./src/config/typeorm.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
