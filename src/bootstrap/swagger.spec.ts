@@ -11,6 +11,7 @@ jest.mock('@nestjs/swagger', () => ({
     setVersion: jest.fn().mockReturnThis(),
     setContact: jest.fn().mockReturnThis(),
     build: jest.fn(),
+    addBearerAuth: jest.fn().mockReturnThis(),
   })),
   SwaggerModule: {
     createDocument: jest.fn(),
@@ -36,6 +37,11 @@ describe('generateSwagger', () => {
       .setTitle(name)
       .setVersion(version)
       .setContact('akyTheDev', '', 'aky.dev@proton.me')
+      .addBearerAuth({
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      })
       .build()
 
     const setupOptions = {

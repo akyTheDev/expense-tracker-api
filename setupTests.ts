@@ -1,4 +1,5 @@
 process.env.PORT = '8000'
+process.env.JWT_SECRET = 'supersecretjwt'
 process.env.DB_HOST = 'localhost'
 process.env.DB_USERNAME = 'username'
 process.env.DB_PASSWORD = 'password'

@@ -8,5 +8,6 @@ interface DatabaseConfiguration {
 
 export interface ApplicationConfiguration {
   PORT: number
+  JWT_SECRET: string
   DB: DatabaseConfiguration
 }

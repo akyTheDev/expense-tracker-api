@@ -9,6 +9,9 @@ class EnvironmentVariables {
   PORT: number = 8000
 
   @IsString()
+  JWT_SECRET: string
+
+  @IsString()
   DB_HOST: string
 
   @IsString()

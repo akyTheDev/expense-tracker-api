@@ -4,6 +4,7 @@ describe('configuration', () => {
   it('should return the application configuration correctly', () => {
     const expectedResult = {
       PORT: 8000,
+      JWT_SECRET: 'supersecretjwt',
       DB: {
         HOST: 'localhost',
         USERNAME: 'username',

@@ -15,6 +15,7 @@ describe('validateEnvironmentVariables', () => {
   it('should return validated env variables if validation success', () => {
     const envVariables = {
       PORT: '8000',
+      JWT_SECRET: 'supersecretjwt',
       DB_HOST: 'localhost',
       DB_USERNAME: 'username',
       DB_PASSWORD: 'password',

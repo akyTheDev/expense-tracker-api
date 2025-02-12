@@ -12,6 +12,11 @@ export const generateSwagger = (app: INestApplication): void => {
       'https://github.com/akyTheDev',
       'aky.dev@proton.me',
     )
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    })
     .build()
 
   const document = SwaggerModule.createDocument(app, swaggerBuilder)

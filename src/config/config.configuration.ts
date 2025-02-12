@@ -2,6 +2,7 @@ import { ApplicationConfiguration } from './config.model'
 
 export const configuration = (): ApplicationConfiguration => ({
   PORT: +process.env.PORT,
+  JWT_SECRET: process.env.JWT_SECRET,
   DB: {
     HOST: process.env.DB_HOST,
     USERNAME: process.env.DB_USERNAME,
