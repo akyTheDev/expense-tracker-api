@@ -1,6 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  Index,
+} from 'typeorm'
+
+import { CreditCard } from '../../credit-cards/entities/credit-card.entity'
 
 @Entity()
+@Index('user_email_ids', ['email'])
 export class User {
   @PrimaryGeneratedColumn()
   id: number
@@ -13,4 +22,9 @@ export class User {
 
   @Column()
   name: string
+
+  @OneToMany(() => CreditCard, (creditCard) => creditCard.user, {
+    cascade: true,
+  })
+  creditCards: CreditCard[]
 }

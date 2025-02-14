@@ -11,8 +11,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { UserDto } from './dto'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UsersService } from './users.service'
-import { GetUserId } from '../auth/decorators'
-import { JwtAuthGuard } from '../auth/guards'
+import { GetUserId, JwtAuthGuard } from '../auth'
 
 @Controller('users')
 export class UsersController {
@@ -33,7 +32,7 @@ export class UsersController {
     status: HttpStatus.CONFLICT,
     description: 'User already exists.',
   })
-  create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
     return this.usersService.create(createUserDto)
   }
 
@@ -53,7 +52,7 @@ export class UsersController {
     status: HttpStatus.NOT_FOUND,
     description: 'The user info could not be fetched!',
   })
-  getUserInfo(@GetUserId() userId: number) {
+  async getUserInfo(@GetUserId() userId: number) {
     return this.usersService.getUserInfo(userId)
   }
 }

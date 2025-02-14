@@ -1,2 +1,5 @@
 export const user_1_token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDEsImlhdCI6MTczOTU2NTE3Nn0.JIjsyXHNH1IbYqTy3X5apjeFGxKk4gsV28-DTbc8If0'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczOTU3NDE3NX0.wiqzoPQcuN3UEyvSHT7mw9Np9pZqr9pi1cgu7qjqxN0'
+
+export const user_3_token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTczOTU3Mzk0Mn0.mIa7WjS85QUn9d7X4pi1bnTJsM8nZT2HaSBA1z42d_c'
