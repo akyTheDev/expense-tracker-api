@@ -16,7 +16,7 @@
     "test": "jest --config jest.config.json",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config jest-e2e.config.json",
+    "test:e2e": "jest --config jest-e2e.config.json --detectOpenHandles",
     "merge-coverage-report-jsons": "istanbul-merge --out ./coverage/temp/coverage-final.json ./coverage/default/coverage-final.json ./coverage/e2e/coverage-final.json",
     "generate-coverage-all-packages": "nyc report --reporter=html --reporter=text --reporter=lcov --reporter=clover --report-dir=./coverage/all --temp-dir=./coverage/temp",
     "check-coverage": "npm run merge-coverage-report-jsons && npm run generate-coverage-all-packages",
@@ -47,6 +47,7 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.5.0",
     "@nestjs/cli": "^10.4.9",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",

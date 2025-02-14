@@ -1,0 +1,2 @@
+export const user_1_token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDEsImlhdCI6MTczOTU2NTE3Nn0.JIjsyXHNH1IbYqTy3X5apjeFGxKk4gsV28-DTbc8If0'
