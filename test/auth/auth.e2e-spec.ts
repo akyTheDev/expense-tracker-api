@@ -25,7 +25,7 @@ describe('Auth (e2e)', () => {
       const response = await request(app.getHttpServer())
         .post('/auth/login')
         .send({
-          email: 'user@example.com',
+          email: 'test@test1.com',
           password: 'test1234',
         })
         .expect(201)

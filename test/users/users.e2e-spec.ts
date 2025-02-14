@@ -44,7 +44,7 @@ describe('Users (e2e)', () => {
 
     it('should return 409 when the email has already been used', async () => {
       const newUser = {
-        email: 'user@example.com',
+        email: 'test@test1.com',
         password: 'test1234',
         name: faker.person.fullName(),
       }
