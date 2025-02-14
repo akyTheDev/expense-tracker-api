@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { ConfigService } from '@nestjs/config'
 import { config } from 'dotenv'
 import { DataSource } from 'typeorm'
