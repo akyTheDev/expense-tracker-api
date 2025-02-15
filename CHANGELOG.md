@@ -1,3 +1,9 @@
+## 0.2.0 (2025-02-15)
+
+### Feat
+
+- **transactions**: add transactions module (#3)
+
 ## 0.1.0 (2025-02-14)
 
 ### Feat
