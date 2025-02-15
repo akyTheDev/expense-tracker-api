@@ -7,6 +7,7 @@ import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
 import { configuration, validateEnvironmentVariables } from './config'
 import { CreditCardsModule } from './credit-cards/credit-cards.module'
+import { TransactionsModule } from './transactions/transactions.module'
 import { UsersModule } from './users/users.module'
 
 @Module({
@@ -32,6 +33,7 @@ import { UsersModule } from './users/users.module'
     UsersModule,
     AuthModule,
     CreditCardsModule,
+    TransactionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

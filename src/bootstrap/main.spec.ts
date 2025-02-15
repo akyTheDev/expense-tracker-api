@@ -47,6 +47,7 @@ describe('bootstrap', () => {
       get: jest.fn(),
       listen: jest.fn(),
       enableShutdownHooks: jest.fn(),
+      useGlobalPipes: jest.fn(),
       select: jest.fn(),
       getHttpServer: jest.fn().mockReturnValue({
         address: jest.fn().mockReturnValue({ port: PORT }),
