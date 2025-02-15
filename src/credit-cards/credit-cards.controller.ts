@@ -29,7 +29,7 @@ export class CreditCardsController {
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
-    description: 'The user has been successfully created',
+    description: 'The credit card has been successfully created',
     type: undefined,
   })
   @ApiResponse({
@@ -39,8 +39,11 @@ export class CreditCardsController {
   async create(
     @GetUserId() userId: number,
     @Body() createCreditCardDto: CreateCreditCardDto,
-  ): Promise<void> {
+  ) {
     await this.creditCardsService.create(userId, createCreditCardDto)
+    return {
+      message: 'Ok',
+    }
   }
 
   @Get()
