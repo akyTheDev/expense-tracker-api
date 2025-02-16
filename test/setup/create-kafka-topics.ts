@@ -19,7 +19,7 @@ async function createTopics() {
     console.log('Connected to Kafka admin.')
 
     const topics = [
-      { topic: 'transaction.created', numPartitions: 1, replicationFactor: 1 },
+      { topic: 'transaction.create', numPartitions: 1, replicationFactor: 1 },
       // Add more topics as needed
     ]
 
