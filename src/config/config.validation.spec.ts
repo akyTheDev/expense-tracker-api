@@ -21,6 +21,10 @@ describe('validateEnvironmentVariables', () => {
       DB_PASSWORD: 'password',
       DB_NAME: 'postgres',
       DB_PORT: '5432',
+      KAFKA_CLIENT_ID: 'kafka-client',
+      KAFKA_BROKER: 'localhost:59092',
+      KAFKA_USERNAME: 'admin',
+      KAFKA_PASSWORD: 'password',
     }
 
     const result = validateEnvironmentVariables(envVariables)
