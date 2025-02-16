@@ -26,6 +26,18 @@ class EnvironmentVariables {
   @IsNumber()
   @Type(() => Number)
   DB_PORT: string
+
+  @IsString()
+  KAFKA_CLIENT_ID: string
+
+  @IsString()
+  KAFKA_BROKER: string
+
+  @IsString()
+  KAFKA_USERNAME: string
+
+  @IsString()
+  KAFKA_PASSWORD: string
 }
 
 /**

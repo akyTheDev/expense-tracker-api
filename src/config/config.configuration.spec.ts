@@ -12,6 +12,12 @@ describe('configuration', () => {
         NAME: 'postgres',
         PORT: 5432,
       },
+      KAFKA: {
+        CLIENT_ID: 'kafka-client',
+        BROKER: 'localhost:59092',
+        USERNAME: 'admin',
+        PASSWORD: 'password',
+      },
     }
 
     const result = configuration()

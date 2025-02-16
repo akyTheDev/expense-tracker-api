@@ -16,5 +16,8 @@ npx ts-node test/setup/delete-data.ts
 echo "Test data is uploading..."
 npx ts-node test/setup/load-data.ts
 
+echo "Kafka topics are creating..."
+npx ts-node test/setup/create-kafka-topics.ts
+
 echo "Tests are running..."
 npm run test

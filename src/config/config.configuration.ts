@@ -10,4 +10,10 @@ export const configuration = (): ApplicationConfiguration => ({
     NAME: process.env.DB_NAME,
     PORT: +process.env.DB_PORT,
   },
+  KAFKA: {
+    CLIENT_ID: process.env.KAFKA_CLIENT_ID,
+    BROKER: process.env.KAFKA_BROKER,
+    USERNAME: process.env.KAFKA_USERNAME,
+    PASSWORD: process.env.KAFKA_PASSWORD,
+  },
 })

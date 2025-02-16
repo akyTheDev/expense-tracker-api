@@ -12,11 +12,13 @@ import {
   transactionsDb,
 } from '../../test/fixtures/transactions'
 import { CreditCard } from '../credit-cards/entities/credit-card.entity'
+import { KafkaService } from '../kafka/kafka.service'
 
 describe('TransactionsService', () => {
   let service: TransactionsService
   let cardRepository: Repository<CreditCard>
   let transactionRepository: Repository<Transaction>
+  let kafkaService: KafkaService
 
   const mockCardRepository = {
     findOne: jest.fn().mockResolvedValue(undefined),
@@ -46,6 +48,12 @@ describe('TransactionsService', () => {
           provide: getRepositoryToken(CreditCard),
           useValue: mockCardRepository,
         },
+        {
+          provide: KafkaService,
+          useValue: {
+            sendMessage: jest.fn().mockResolvedValue(undefined),
+          },
+        },
 
         TransactionsService,
       ],
@@ -58,6 +66,7 @@ describe('TransactionsService', () => {
     transactionRepository = module.get<Repository<Transaction>>(
       getRepositoryToken(Transaction),
     )
+    kafkaService = module.get<KafkaService>(KafkaService)
   })
 
   afterEach(() => {
@@ -79,10 +88,18 @@ describe('TransactionsService', () => {
       })
       expect(transactionRepository.save).not.toHaveBeenCalled()
       expect(transactionRepository.create).not.toHaveBeenCalled()
+      expect(kafkaService.sendMessage).not.toHaveBeenCalled()
     })
 
     it('should correctly insert the transaction', async () => {
       mockCardRepository.findOne.mockResolvedValue(creditCardsFixture[0])
+      mockTransactionRepository.save.mockResolvedValue({
+        id: 1234,
+        date: new Date('2024-01-03T12:15:00Z'),
+        amount: 123,
+        description: 'Test transaction',
+        creditCard: creditCardsFixture[0],
+      })
 
       await service.create(987, createTransactionFixture)
 
@@ -95,6 +112,16 @@ describe('TransactionsService', () => {
         creditCard: creditCardsFixture[0],
       })
       expect(transactionRepository.save).toHaveBeenCalled()
+      expect(kafkaService.sendMessage).toHaveBeenCalledWith(
+        'transaction.create',
+        {
+          userId: 987,
+          date: new Date('2024-01-03T12:15:00Z'),
+          amount: 123,
+          description: 'Test transaction',
+          cardId: 1,
+        },
+      )
     })
   })
 

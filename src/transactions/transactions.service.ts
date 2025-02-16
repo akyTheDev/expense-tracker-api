@@ -5,16 +5,22 @@ import { Repository } from 'typeorm'
 import { TransactionDto } from './dto'
 import { CreateTransactionDto } from './dto/create-transaction.dto'
 import { Transaction } from './entities/transaction.entity'
+import { TransactionMessage } from './models'
 import { CreditCard } from '../credit-cards/entities/credit-card.entity'
+import { KafkaService } from '../kafka/kafka.service'
 
 @Injectable()
 export class TransactionsService {
+  private readonly kafkaTransactionCreateTopic = 'transaction.create'
+
   constructor(
     @InjectRepository(Transaction)
     private transactionRepository: Repository<Transaction>,
 
     @InjectRepository(CreditCard)
     private cardRepository: Repository<CreditCard>,
+
+    private readonly kafkaService: KafkaService,
   ) {}
 
   async create(
@@ -23,12 +29,22 @@ export class TransactionsService {
   ): Promise<void> {
     const creditCard = await this.fetchCard(userId, createTransactionDto.cardId)
 
-    await this.transactionRepository.save(
+    const newTransaction = await this.transactionRepository.save(
       this.transactionRepository.create({
         ...createTransactionDto,
         creditCard,
       }),
     )
+
+    this.kafkaService
+      .sendMessage(this.kafkaTransactionCreateTopic, {
+        userId: userId,
+        date: newTransaction.date,
+        amount: newTransaction.amount,
+        description: newTransaction.description,
+        cardId: newTransaction.creditCard.id,
+      } as TransactionMessage)
+      .then()
   }
 
   async fetchAllTransactions(
